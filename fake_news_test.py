@@ -2,13 +2,6 @@ import pandas as pd
 import re
 import string
 
-# importing the data 
-data = pd.read_csv("manual_testing.csv")
-
-df = data.drop(["title","subject","date"],axis=1)
-print(df)
-
-print(df["text"][1])
 # Load the model
 from joblib import load
 
@@ -45,8 +38,8 @@ def output_label(n):
     elif n == 1:
         return "Not A Fake News"
 
-def manual_testing():
-    testing_news = {"text":[df["text"][1]]}
+def manual_testing(news):
+    testing_news = {"text":[news]}
     new_def_test = pd.DataFrame(testing_news)
     new_def_test["text"] = new_def_test["text"].apply(wordopt)
     new_x_test = new_def_test["text"]
@@ -58,10 +51,12 @@ def manual_testing():
     pred_RFC = saved_RFC.predict(new_xv_test)
     pred_SVM = saved_svm.predict(new_xv_test)
 
-    return print("\n\n DT Prediction : {} ".format(output_label(pred_DT[0])))
+    return print("\n\n DT Prediction : {}\n ADB Prediction : {}\n GBC Prediction : {}\n LR Prediction : {}\n RFC Prediction : {}\n SVM Prediction : {} ".format(output_label(pred_DT[0]),
+                                                                                                                                                                output_label(pred_ADB[0]),
+                                                                                                                                                                output_label(pred_GBC[0]),
+                                                                                                                                                                output_label(pred_LR[0]),
+                                                                                                                                                                output_label(pred_RFC[0]),
+                                                                                                                                                                output_label(pred_SVM[0])))
 
-# news = str(input("Enter the News for testing := "))
-# manual_testing(news)
-
-
-manual_testing()
+news = str(input("Enter the News for testing := "))
+manual_testing(news)
