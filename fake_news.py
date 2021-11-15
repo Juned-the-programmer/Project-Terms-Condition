@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np 
 import string
 import re
+import pickle
 
 # Importing the dataset for both fake and real news
 df_fake = pd.read_csv("DataSet/Fake.csv")
@@ -69,7 +70,9 @@ xv_train = vectorization.fit_transform(x_train)
 xv_test = vectorization.transform(x_test)
 
 from joblib import dump 
-dump(vectorization , "model_vectorization")
+filename = 'model_vectorization.sav'
+pickle.dump(vectorization , open(filename, 'wb'))
+# dump(vectorization , "model_vectorization")
 
 # Logistic Regression
 from sklearn.metrics import accuracy_score
@@ -82,7 +85,9 @@ y_pred_lr = LR.predict(xv_test)
 print(accuracy_score(y_test , y_pred_lr))
 print(classification_report(y_test,y_pred_lr))
 
-dump(LR , "model_LR")
+filename = 'model_LR.sav'
+pickle.dump(LR, open(filename, 'wb'))
+# dump(LR , "model_LR")
 
 # Decision tree classifier
 from sklearn.tree import DecisionTreeClassifier
@@ -93,7 +98,9 @@ y_pred_dt = DT.predict(xv_test)
 print(accuracy_score(y_test , y_pred_dt))
 print(classification_report(y_test , y_pred_dt))
 
-dump(DT , "model_db")
+filename = 'model_db.sav'
+pickle.dump(DT, open(filename, 'wb'))
+# dump(DT , "model_db")
 
 # Gradient Boosting Classifier
 from sklearn.ensemble import GradientBoostingClassifier
@@ -104,7 +111,9 @@ y_pred_gbc = GBC.predict(xv_test)
 print(accuracy_score(y_test , y_pred_gbc))
 print(classification_report(y_test , y_pred_dt))
 
-dump(GBC , "model_GBC")
+filename = 'model_GBC.sav'
+pickle.dump(GBC , open(filename, 'wb'))
+# dump(GBC , "model_GBC")
 
 # Random Forest Classisifier
 from sklearn.ensemble import RandomForestClassifier
@@ -115,7 +124,9 @@ y_pred_rfc = RFC.predict(xv_test)
 print(accuracy_score(y_test , y_pred_rfc))
 print(classification_report(y_test , y_pred_rfc))
 
-dump(RFC , "model_RFC")
+filename = 'model_RFC.sav'
+pickle.dump(RFC , open(filename, 'wb'))
+# dump(RFC , "model_RFC")
 
 # Gaussian Naive Bayes
 # from sklearn.naive_bayes import GaussianNB
@@ -137,7 +148,9 @@ y_pred_adb = ADB.predict(xv_test)
 print(accuracy_score(y_test,y_pred_adb))
 print(classification_report(y_test, y_pred_adb))
 
-dump(ADB, "model_adb")
+filename = 'model_adb.sav'
+pickle.dump(ADB , open(filename, 'wb'))
+# dump(ADB, "model_adb")
 
 # SVM
 from sklearn.svm import SVC
@@ -148,4 +161,6 @@ y_pred_svm = SVM.predict(xv_test)
 print(accuracy_score(y_test , y_pred_svm))
 print(classification_report(y_test, y_pred_svm))
 
-dump(SVM , "model_svm")
+filename = 'model_svm.sav'
+pickle.dump(SVM , open(filename, 'wb'))
+# dump(SVM , "model_svm")
