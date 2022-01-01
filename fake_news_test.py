@@ -5,12 +5,12 @@ import string
 # Load the model
 from joblib import load
 
-saved_db = load("model_db") 
-saved_adb = load("model_adb")
-saved_GBC = load("model_GBC")
-saved_LR = load("model_LR")
-saved_RFC = load("model_RFC")
-saved_svm = load("model_svm")
+saved_db = load("news_model/model_db") 
+saved_adb = load("news_model/model_adb")
+saved_GBC = load("news_model/model_GBC")
+saved_LR = load("news_model/model_LR")
+saved_RFC = load("news_model/model_RFC")
+saved_svm = load("news_model/model_svm")
 
 saved_vectors = load("model_vectorization")
 # saved_model = pickle.load(open('model_DT', 'rb'))
